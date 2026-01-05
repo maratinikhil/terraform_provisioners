@@ -1,6 +1,6 @@
 data "aws_vpc" "My_exist_vpc" {
     filter {
-        name = "Name"
+        name = "tag:Name"
       values = [ "MyTerraVpc2" ]
     }
 }
