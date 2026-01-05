@@ -1,6 +1,6 @@
 data "aws_vpc" "My_exist_vpc" {
     filter {
-        name = "tag:Name"
+        name = "Name"
       values = [ "MyTerraVpc2" ]
     }
 }
@@ -8,16 +8,13 @@ data "aws_vpc" "My_exist_vpc" {
 
 data "aws_security_group" "My_exist_SG" {
     filter {
-      name = "group-name"
+      name = "Name"
       values = [ "mysg" ]
     }
 }
 
 
 data "aws_ami" "My_exist_ami" {
-    most_recent = true
-    owners = [ "099720109477"]
-
     filter {
       name = "AMI name"
       values = [ "ubuntu-minimal/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-minimal-20250625" ]
@@ -26,7 +23,7 @@ data "aws_ami" "My_exist_ami" {
 }
 
 resource "aws_key_pair" "Mykey" {
-    public_key = file("~/id_ed25519.pub")
+    public_key = file("~/.ssh/id_ed25519.pub")
     key_name = "Mykeynew"
 }
 
@@ -44,7 +41,7 @@ resource "aws_instance" "myownec2" {
     connection {
         type = "ssh"
         user = "ubuntu"
-        private_key = file("~/id_ed25519.pub")
+        private_key = file("~/.ssh/id_ed25519.pub")
         host = aws_instance.myownec2.public_ip
     }
 
