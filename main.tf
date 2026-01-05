@@ -23,7 +23,7 @@ data "aws_ami" "My_exist_ami" {
 }
 
 resource "aws_key_pair" "Mykey" {
-    public_key = file("~/.ssh/id_ed25519.pub")
+    public_key = file("~/id_ed25519.pub")
     key_name = "Mykeynew"
 }
 
