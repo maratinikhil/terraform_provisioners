@@ -41,7 +41,7 @@ resource "aws_instance" "myownec2" {
     connection {
         type = "ssh"
         user = "ubuntu"
-        private_key = file("~/.ssh/id_ed25519.pub")
+        private_key = file("~/id_ed25519.pub")
         host = aws_instance.myownec2.public_ip
     }
 
