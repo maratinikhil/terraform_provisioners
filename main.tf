@@ -8,13 +8,16 @@ data "aws_vpc" "My_exist_vpc" {
 
 data "aws_security_group" "My_exist_SG" {
     filter {
-      name = "Name"
+      name = "group-name"
       values = [ "mysg" ]
     }
 }
 
 
 data "aws_ami" "My_exist_ami" {
+    most_recent = true
+    owners = [ "099720109477"]
+
     filter {
       name = "AMI name"
       values = [ "ubuntu-minimal/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-minimal-20250625" ]
